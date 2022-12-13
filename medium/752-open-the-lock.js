@@ -8,6 +8,8 @@
 
     if (deadends.includes("0000")) return -1
 
+    const deadendsSet = new Set([...deadends])
+
     const seen = new Set()
     seen.add("0000")
 
@@ -19,7 +21,7 @@
 
         if (node === target) return level
 
-        if (deadends.includes(node)) continue
+        if (deadendsSet.has(node)) continue
 
         let neighbors = getNeighbors(node)
 
@@ -37,7 +39,7 @@
 function getNeighbors(node) {
     const DELTA = [1, -1]
     let neighbors = []
-    
+
     for (let i = 0; i < 4; i++) {
         let curr = Number(node.charAt(i))
 
